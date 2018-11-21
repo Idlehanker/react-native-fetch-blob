@@ -624,6 +624,10 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
     }
 
     private void emitStateEvent(WritableMap args) {
+
+        if(!RNFetchBlob.RCTContext.hasActiveCatalystInstance()){
+            return;
+        }
         RNFetchBlob.RCTContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit(RNFetchBlobConst.EVENT_HTTP_STATE, args);
     }
